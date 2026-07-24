@@ -4,10 +4,25 @@
 	import type { PageProps } from './$types';
 	import WhatsAppCta from '$lib/components/WhatsAppCta.svelte';
 	import { serviceMessage } from '$lib/whatsapp';
+	import { onMount } from 'svelte';
+	import { projectId, dataset, apiVersion } from '$lib/sanity/api';
 
 	const { data }: PageProps = $props();
 	const query = $derived(useQuery<Service[]>(data));
 	const services = $derived($query.data ?? []);
+
+	onMount(async () => {
+		try {
+			console.log('services count (derived):', services?.length);
+			const groq = '*[_type == "service" && defined(slug.current)] | order(order asc){_id,name,slug}';
+			const url = `https://${projectId}.apicdn.sanity.io/v${apiVersion}/data/query/${dataset}?query=${encodeURIComponent(groq)}`;
+			const res = await fetch(url);
+			const json = await res.json();
+			console.log('direct Sanity fetch result:', json);
+		} catch (err) {
+			console.error('services page debug error', err);
+		}
+	});
 </script>
 
 <svelte:head>
