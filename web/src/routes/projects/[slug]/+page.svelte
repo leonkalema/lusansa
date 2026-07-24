@@ -124,7 +124,7 @@
 							src={urlFor(photo).width(900).url()}
 							alt={photo.caption ?? ''}
 							loading={i === 0 ? 'eager' : 'lazy'}
-							class="w-full rounded-lg border border-brown-700/15"
+							class="w-full rounded border border-brown-700/20"
 						/>
 						{#if photo.caption}
 							<figcaption class="mt-2 text-[14px] text-ink-soft">

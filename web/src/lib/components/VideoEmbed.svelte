@@ -14,7 +14,7 @@
 
 {#if id}
 	<figure>
-		<div class="aspect-video overflow-hidden rounded-lg border border-brown-700/15">
+		<div class="aspect-video overflow-hidden rounded border border-brown-700/20">
 			<iframe
 				src={`https://www.youtube-nocookie.com/embed/${id}`}
 				title={title ?? 'Project video'}

@@ -7,7 +7,7 @@
 	aria-label="Survey plan of a planned plot layout with an access road and marked boundaries"
 	class="block h-auto w-full"
 >
-	<rect width="720" height="560" fill="#f1ede2" />
+	<rect width="720" height="560" fill="#efebe1" />
 
 	<!-- grid -->
 	<g stroke="#584838" stroke-opacity="0.08" stroke-width="1">
@@ -20,7 +20,7 @@
 	</g>
 
 	<!-- contours -->
-	<g fill="none" stroke="#a3720a" stroke-opacity="0.18" stroke-width="1.2">
+	<g fill="none" stroke="#b8954e" stroke-opacity="0.18" stroke-width="1.2">
 		<path d="M-20,470 C160,430 240,510 420,470 S650,420 740,450" />
 		<path d="M-20,510 C170,475 260,545 440,510 S660,465 740,495" />
 		<path d="M560,-20 C540,60 610,120 590,200 S520,330 560,420" />
@@ -43,15 +43,15 @@
 
 	<!-- highlighted plot 12 -->
 	<g>
-		<path d="M258,293 l96,-58 40,63 -96,58 z" fill="#107800" fill-opacity="0.1" stroke="#107800" stroke-opacity="0.85" stroke-width="1.6" />
+		<path d="M258,293 l96,-58 40,63 -96,58 z" fill="#0a3d20" fill-opacity="0.1" stroke="#0a3d20" stroke-opacity="0.85" stroke-width="1.6" />
 		<!-- boundary pegs -->
-		<g fill="#107800">
+		<g fill="#0a3d20">
 			<rect x="254" y="289" width="7" height="7" />
 			<rect x="350" y="231" width="7" height="7" />
 			<rect x="390" y="294" width="7" height="7" />
 			<rect x="294" y="352" width="7" height="7" />
 		</g>
-		<text x="322" y="302" font-size="15" font-weight="600" fill="#0b5a00" text-anchor="middle">12</text>
+		<text x="322" y="302" font-size="15" font-weight="600" fill="#072e18" text-anchor="middle">12</text>
 	</g>
 
 	<!-- plot numbers -->
@@ -68,7 +68,7 @@
 	<text x="490" y="128" font-size="11" letter-spacing="2" fill="#503018" fill-opacity="0.55" transform="rotate(-27 490 128)">MURRAM ACCESS ROAD 8M</text>
 
 	<!-- coordinate ticks -->
-	<g font-size="10.5" fill="#8a5f08" fill-opacity="0.8" style="font-variant-numeric: tabular-nums">
+	<g font-size="10.5" fill="#8a6a2f" fill-opacity="0.8" style="font-variant-numeric: tabular-nums">
 		<text x="14" y="24">0°28′09″N</text>
 		<text x="632" y="546">32°38′41″E</text>
 	</g>

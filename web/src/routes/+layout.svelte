@@ -20,7 +20,7 @@
 <PreviewMode enabled={previewEnabled}>
 	<VisualEditing enabled={previewEnabled}>
 		<QueryLoader enabled={previewEnabled} {client}>
-			<header class="border-b border-brown-700/10 bg-paper">
+			<header class="sticky top-0 z-40 border-b border-brown-700/10 bg-paper/95 backdrop-blur-sm">
 				<div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
 					<a href="/" class="flex items-center">
 						<img
@@ -48,14 +48,14 @@
 				{@render children()}
 			</div>
 
-			<footer id="contact" class="bg-green-900 text-paper">
+			<footer id="contact" class="texture-grid bg-green-900 text-paper">
 				<div class="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-3">
 					<div>
 						<p class="font-display text-2xl font-semibold">Lusansa</p>
 						<p class="mt-1 text-[13px] tracking-[0.08em] text-paper/70 uppercase">
 							Property Services Ltd
 						</p>
-						<p class="mt-4 font-display text-lg italic text-[#d9a83c]">{site.tagline}</p>
+						<p class="mt-4 font-display text-lg italic text-gold-500">{site.tagline}</p>
 					</div>
 
 					<div class="text-[15px] leading-7 text-paper/85">

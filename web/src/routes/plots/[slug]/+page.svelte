@@ -63,7 +63,7 @@
 									src={urlFor(photo).width(1200).url()}
 									alt={photo.caption ?? ''}
 									loading={i === 0 ? 'eager' : 'lazy'}
-									class="w-full rounded-lg border border-brown-700/15"
+									class="w-full rounded border border-brown-700/20"
 								/>
 								{#if photo.caption}
 									<figcaption class="mt-2 text-[14px] text-ink-soft">
@@ -107,7 +107,7 @@
 
 			<!-- Facts card -->
 			<aside>
-				<div class="rounded-lg border border-brown-700/15 bg-white p-6 lg:sticky lg:top-6">
+				<div class="rounded border border-brown-700/20 bg-white p-6 lg:sticky lg:top-6">
 					<StatusBadge status={plot.status} />
 					<p class="tabular mt-3 text-3xl font-semibold text-ink">{ugx(plot.priceUGX)}</p>
 					{#if plot.installments?.months}

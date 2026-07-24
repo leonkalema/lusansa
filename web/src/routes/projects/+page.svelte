@@ -34,7 +34,7 @@
 			{/each}
 		</div>
 	{:else}
-		<div class="mt-10 rounded-lg border border-brown-700/15 bg-white p-8">
+		<div class="mt-10 rounded border border-brown-700/20 bg-white p-8">
 			<p class="text-ink-soft">No projects are published right now. New ones are being prepared.</p>
 			<div class="mt-4">
 				<WhatsAppCta message={generalMessage} label="Ask what is coming" />

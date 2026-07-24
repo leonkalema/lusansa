@@ -19,8 +19,9 @@
 
 <a
 	href={`/projects/${project.slug.current}`}
-	class="group block overflow-hidden rounded-lg border border-brown-700/15 bg-white transition-colors hover:border-green-700/45"
+	class="card-lift group block overflow-hidden rounded border border-brown-700/20 bg-white hover:border-green-700"
 >
+	<div class="overflow-hidden">
 	{#if project.coverPhoto?.asset}
 		<img
 			src={urlFor(project.coverPhoto).width(880).height(480).url()}
@@ -28,14 +29,14 @@
 			width="880"
 			height="480"
 			loading="lazy"
-			class="aspect-[11/6] w-full object-cover"
+			class="aspect-[11/6] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
 		/>
 	{:else}
 		<div class="flex aspect-[11/6] w-full flex-col justify-between bg-paper-dark p-4">
 			<svg viewBox="0 0 120 50" class="h-12 w-auto self-end" fill="none" aria-hidden="true">
 				<path d="M-4,42 C30,34 50,28 74,14 S104,2 126,-2" stroke="#503018" stroke-opacity="0.35" stroke-width="7" />
 				<path d="M18,34 l22,-13 10,15 -22,13 z" stroke="#221e1a" stroke-opacity="0.4" stroke-width="1" />
-				<path d="M40,21 l22,-13 10,15 -22,13 z" stroke="#107800" stroke-opacity="0.8" stroke-width="1.3" fill="#107800" fill-opacity="0.08" />
+				<path d="M40,21 l22,-13 10,15 -22,13 z" stroke="#0a3d20" stroke-opacity="0.8" stroke-width="1.3" fill="#0a3d20" fill-opacity="0.08" />
 				<path d="M62,8 l22,-13 10,15 -22,13 z" stroke="#221e1a" stroke-opacity="0.4" stroke-width="1" />
 			</svg>
 			{#if project.coordinates}
@@ -49,6 +50,7 @@
 			{/if}
 		</div>
 	{/if}
+	</div>
 
 	<div class="p-5">
 		{#if project.status}

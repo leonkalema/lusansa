@@ -32,7 +32,7 @@
 	});
 
 	const statusColor: Record<PlotStatus, string> = {
-		available: '#107800',
+		available: '#0a3d20',
 		reserved: '#b07b10',
 		sold: '#8c4a32'
 	};
@@ -157,7 +157,7 @@
 </script>
 
 <figure>
-	<div class="relative isolate z-0 overflow-hidden rounded-lg border border-brown-700/15">
+	<div class="relative isolate z-0 overflow-hidden rounded border border-brown-700/20">
 		<div
 			bind:this={mapEl}
 			role="img"
@@ -220,7 +220,7 @@
 	:global(.plot-peg) {
 		width: 7px;
 		height: 7px;
-		background: #107800;
+		background: #0a3d20;
 	}
 	:global(.plot-tip) {
 		background: #faf8f2;
@@ -231,7 +231,7 @@
 		box-shadow: none;
 	}
 	:global(.leaflet-container) {
-		background: #f1ede2;
+		background: #efebe1;
 		font-family: inherit;
 	}
 	:global(.leaflet-control-zoom a) {

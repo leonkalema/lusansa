@@ -34,7 +34,7 @@
 			{/each}
 		</div>
 	{:else}
-		<div class="mt-10 rounded-lg border border-brown-700/15 bg-white p-8">
+		<div class="mt-10 rounded border border-brown-700/20 bg-white p-8">
 			<p class="text-ink-soft">
 				No plots are published right now. New developments are being prepared.
 			</p>
