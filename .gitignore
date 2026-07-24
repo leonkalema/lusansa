@@ -1,0 +1,17 @@
+# Dependencies
+node_modules
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Internal / agent tooling
+.agents/
+.claude/
+skills-lock.json
+
+# Internal docs (not for public repo)
+COPY_RULES.md
+WEBSITE_GUIDE.md
+Company profile.docx
+logo.jpeg
