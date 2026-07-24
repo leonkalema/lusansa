@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { useQuery } from '@sanity/sveltekit';
-	import type { Plot, Project } from '$lib/sanity/queries';
+	import type { Plot, Project, Service } from '$lib/sanity/queries';
 	import type { PageProps } from './$types';
 	import SurveyPlan from '$lib/components/SurveyPlan.svelte';
 	import PlotCard from '$lib/components/PlotCard.svelte';
@@ -8,7 +8,6 @@
 	import WhatsAppCta from '$lib/components/WhatsAppCta.svelte';
 	import { verificationMessage } from '$lib/whatsapp';
 	import { site } from '$lib/content/site';
-	import { services } from '$lib/content/services';
 	import logo from '$lib/assets/logo.jpeg';
 
 	const { data }: PageProps = $props();
@@ -16,6 +15,8 @@
 	const plots = $derived($plotsQuery.data);
 	const projectsQuery = $derived(useQuery<Project[]>(data.projects));
 	const projects = $derived($projectsQuery.data);
+	const servicesQuery = $derived(useQuery<Service[]>(data.services));
+	const services = $derived($servicesQuery.data ?? []);
 
 	const steps = [
 		{
@@ -161,10 +162,10 @@
 				<a href="/services" class="btn-quiet">All services &rarr;</a>
 			</div>
 			<dl class="mt-9 grid gap-x-14 gap-y-7 sm:grid-cols-2">
-				{#each services as service (service.slug)}
+				{#each services as service (service._id)}
 					<div>
 						<dt>
-							<a href={`/services#${service.slug}`} class="font-medium text-brown-800 underline-offset-4 hover:text-green-800 hover:underline">
+							<a href={`/services#${service.slug.current}`} class="font-medium text-brown-800 underline-offset-4 hover:text-green-800 hover:underline">
 								{service.name}
 							</a>
 						</dt>

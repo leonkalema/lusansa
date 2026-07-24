@@ -1,7 +1,13 @@
 <script lang="ts">
-	import { services } from '$lib/content/services';
+	import { useQuery } from '@sanity/sveltekit';
+	import type { Service } from '$lib/sanity/queries';
+	import type { PageProps } from './$types';
 	import WhatsAppCta from '$lib/components/WhatsAppCta.svelte';
 	import { serviceMessage } from '$lib/whatsapp';
+
+	const { data }: PageProps = $props();
+	const query = $derived(useQuery<Service[]>(data));
+	const services = $derived($query.data ?? []);
 </script>
 
 <svelte:head>
@@ -21,16 +27,16 @@
 	</p>
 
 	<nav class="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-[15px]" aria-label="Services">
-		{#each services as service (service.slug)}
-			<a href={`#${service.slug}`} class="text-green-800 underline-offset-4 hover:underline">
+		{#each services as service (service._id)}
+			<a href={`#${service.slug.current}`} class="text-green-800 underline-offset-4 hover:underline">
 				{service.name}
 			</a>
 		{/each}
 	</nav>
 
 	<div class="mt-12 space-y-14">
-		{#each services as service (service.slug)}
-			<section id={service.slug} class="scroll-mt-6 border-t border-brown-700/10 pt-10">
+		{#each services as service (service._id)}
+			<section id={service.slug.current} class="scroll-mt-6 border-t border-brown-700/10 pt-10">
 				<div class="grid gap-8 lg:grid-cols-[1fr_320px]">
 					<div>
 						<h2 class="text-2xl md:text-3xl">{service.name}</h2>

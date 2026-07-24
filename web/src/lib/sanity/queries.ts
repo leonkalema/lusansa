@@ -44,6 +44,10 @@ export const projectQuery = groq`*[_type == "project" && slug.current == $slug][
 	}
 }`;
 
+export const servicesQuery = groq`*[_type == "service" && defined(slug.current)] | order(order asc){
+	_id, name, slug, short, detail, included
+}`;
+
 export const guidesQuery = groq`*[_type == "guide" && defined(slug.current)] | order(publishedAt desc){
 	_id, title, slug, excerpt, mainImage, publishedAt
 }`;
@@ -114,4 +118,13 @@ export interface Guide {
 	mainImage?: unknown;
 	publishedAt?: string;
 	body?: PortableTextBlock[];
+}
+
+export interface Service {
+	_id: string;
+	name: string;
+	slug: { current: string };
+	short: string;
+	detail: string[];
+	included: string[];
 }
