@@ -29,7 +29,15 @@
 		{/if}
 	</figure>
 {:else if url}
-	<p class="text-[15px]">
-		<a href={url} rel="noopener" class="btn-quiet">Watch the video</a>
-	</p>
+	<!-- Direct video files (or any non-YouTube host) play natively in the same
+	     16:9 tile so the media grid keeps its shape -->
+	<figure>
+		<div class="aspect-video overflow-hidden rounded border border-brown-700/20 bg-ink">
+			<!-- svelte-ignore a11y_media_has_caption -->
+			<video src={url} controls preload="metadata" class="h-full w-full"></video>
+		</div>
+		{#if title}
+			<figcaption class="mt-2 text-[14px] text-ink-soft">{title}</figcaption>
+		{/if}
+	</figure>
 {/if}

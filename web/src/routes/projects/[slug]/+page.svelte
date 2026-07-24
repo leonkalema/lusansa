@@ -116,32 +116,37 @@
 			</div>
 		{/if}
 
-		{#if photos.length}
-			<div class="mt-8 grid gap-6 sm:grid-cols-2">
-				{#each photos as photo, i (i)}
-					<figure>
-						<img
-							src={urlFor(photo).width(900).url()}
-							alt={photo.caption ?? ''}
-							loading={i === 0 ? 'eager' : 'lazy'}
-							class="w-full rounded border border-brown-700/20"
-						/>
-						{#if photo.caption}
-							<figcaption class="mt-2 text-[14px] text-ink-soft">
-								{photo.caption}{photo.date ? `, photographed ${photo.date}` : ''}
-							</figcaption>
-						{/if}
-					</figure>
-				{/each}
-			</div>
-		{/if}
-
-		{#if project.videos?.length}
-			<div class="mt-8 grid gap-6 sm:grid-cols-2">
-				{#each project.videos as video (video.url)}
-					<VideoEmbed url={video.url} title={video.title} />
-				{/each}
-			</div>
+		<!-- Photos and videos share one grid so lone items never leave a ragged
+		     half-empty row; an odd count promotes the first item to full width -->
+		{#if photos.length || project.videos?.length}
+			{@const mediaCount = photos.length + (project.videos?.length ?? 0)}
+			{@const hasLead = mediaCount % 2 === 1}
+			<section class="mt-10">
+				<p class="eyebrow mb-4">From the site</p>
+				<div class="grid gap-6 sm:grid-cols-2">
+					{#each photos as photo, i (i)}
+						{@const isLead = hasLead && i === 0}
+						<figure class={isLead ? 'sm:col-span-2' : ''}>
+							<img
+								src={urlFor(photo).width(isLead ? 1400 : 900).url()}
+								alt={photo.caption ?? ''}
+								loading={i === 0 ? 'eager' : 'lazy'}
+								class={`w-full rounded border border-brown-700/20 ${isLead ? '' : 'aspect-[16/9] object-cover'}`}
+							/>
+							{#if photo.caption}
+								<figcaption class="mt-2 text-[14px] text-ink-soft">
+									{photo.caption}{photo.date ? `, photographed ${photo.date}` : ''}
+								</figcaption>
+							{/if}
+						</figure>
+					{/each}
+					{#each project.videos ?? [] as video, i (video.url)}
+						<div class={hasLead && photos.length === 0 && i === 0 ? 'sm:col-span-2' : ''}>
+							<VideoEmbed url={video.url} title={video.title} />
+						</div>
+					{/each}
+				</div>
+			</section>
 		{/if}
 
 		<div class="mt-10 grid gap-10 lg:grid-cols-[1fr_320px]">
