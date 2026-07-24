@@ -1,0 +1,120 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+@import '@fontsource-variable/fraunces';
+
+/* Switzer — self-hosted from Fontshare (ITF Free Font License) */
+@font-face {
+	font-family: 'Switzer';
+	src: url('/fonts/switzer-400.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Switzer';
+	src: url('/fonts/switzer-500.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Switzer';
+	src: url('/fonts/switzer-600.woff2') format('woff2');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Design tokens — WEBSITE_GUIDE.md §3/§4. Colors sampled from the logo. */
+@theme {
+	--color-paper: #faf8f2;
+	--color-paper-dark: #f1ede2;
+	--color-ink: #221e1a;
+	--color-ink-soft: #5c554c;
+
+	--color-green-700: #107800;
+	--color-green-800: #0b5a00;
+	--color-green-900: #07400a;
+
+	--color-brown-700: #584838;
+	--color-brown-800: #503018;
+
+	--color-gold-600: #a3720a;
+	--color-gold-700: #8a5f08;
+
+	--color-status-reserved: #b07b10;
+	--color-status-sold: #8c4a32;
+
+	--font-sans: 'Switzer', ui-sans-serif, system-ui, sans-serif;
+	--font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+}
+
+@layer base {
+	html {
+		background-color: var(--color-paper);
+		color: var(--color-ink);
+		font-family: var(--font-sans);
+		-webkit-font-smoothing: antialiased;
+	}
+	h1,
+	h2,
+	h3 {
+		font-family: var(--font-display);
+		font-variation-settings: 'SOFT' 10, 'WONK' 0;
+		letter-spacing: -0.01em;
+	}
+	:focus-visible {
+		outline: 2px solid var(--color-green-700);
+		outline-offset: 2px;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+}
+
+@layer components {
+	/* Data that lines up looks surveyed — §4 */
+	.tabular {
+		font-variant-numeric: tabular-nums;
+	}
+	.eyebrow {
+		font-size: 0.8125rem;
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--color-gold-700);
+	}
+	.btn-primary {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		background-color: var(--color-green-700);
+		color: var(--color-paper);
+		font-weight: 500;
+		padding: 0.75rem 1.5rem;
+		border-radius: 0.375rem;
+		min-height: 44px;
+		transition: background-color 150ms;
+	}
+	.btn-primary:hover {
+		background-color: var(--color-green-800);
+	}
+	.btn-quiet {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.375rem;
+		color: var(--color-green-800);
+		font-weight: 500;
+		min-height: 44px;
+		text-underline-offset: 4px;
+	}
+	.btn-quiet:hover {
+		text-decoration: underline;
+	}
+}
