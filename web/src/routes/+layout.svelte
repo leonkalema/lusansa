@@ -6,6 +6,7 @@
 	import { site } from '$lib/content/site';
 	import { generalMessage } from '$lib/whatsapp';
 	import WhatsAppCta from '$lib/components/WhatsAppCta.svelte';
+	import MobileNav from '$lib/components/MobileNav.svelte';
 	import type { LayoutProps } from './$types';
 
 	const { children, data }: LayoutProps = $props();
@@ -21,7 +22,7 @@
 	<VisualEditing enabled={previewEnabled}>
 		<QueryLoader enabled={previewEnabled} {client}>
 			<header class="sticky top-0 z-40 border-b border-brown-700/10 bg-paper/95 backdrop-blur-sm">
-				<div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+				<div class="relative mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
 					<a href="/" class="flex items-center">
 						<img
 							src="/logo.png"
@@ -31,17 +32,18 @@
 							class="h-12 w-auto sm:h-14"
 						/>
 					</a>
-					<nav class="flex items-center gap-4 sm:gap-5">
-						<a href="/projects" class="btn-quiet text-[15px] sm:text-base">Projects</a>
-						<a href="/plots" class="btn-quiet hidden text-[15px] sm:inline-flex sm:text-base">Plots</a>
-						<a href="/services" class="btn-quiet text-[15px] sm:text-base">Services</a>
-						<a href="/guides" class="btn-quiet hidden text-[15px] sm:inline-flex sm:text-base">Guides</a>
+					<nav class="hidden items-center gap-5 sm:flex">
+						<a href="/projects" class="btn-quiet text-base">Projects</a>
+						<a href="/plots" class="btn-quiet text-base">Plots</a>
+						<a href="/services" class="btn-quiet text-base">Services</a>
+						<a href="/guides" class="btn-quiet text-base">Guides</a>
 						<WhatsAppCta
 							message={generalMessage}
 							label="WhatsApp us"
 							class="!px-4 !py-2 text-[15px]"
 						/>
 					</nav>
+					<MobileNav />
 				</div>
 			</header>
 
