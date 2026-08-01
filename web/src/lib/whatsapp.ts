@@ -20,6 +20,10 @@ export function serviceMessage(service: string): string {
 	return `Hello Lusansa, I need help with ${service.toLowerCase()}.`;
 }
 
+export function guideMessage(title?: string): string {
+	return `Hello Lusansa, I read your guide${title ? ` "${title}"` : ''} and have a question.`;
+}
+
 export const verificationMessage =
 	"Hello Lusansa, I'd like to verify a piece of land before buying.";
 

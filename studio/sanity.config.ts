@@ -10,7 +10,24 @@ export default defineConfig({
   projectId: 'sp1vpxdb',
   dataset: 'production',
 
-  plugins: [structureTool(), visionTool()],
+  plugins: [
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title('Content')
+          .items([
+            S.documentListItem()
+              .id('homepage-singleton')
+              .schemaType('homepage')
+              .title('Homepage'),
+            S.divider(),
+            ...S.documentTypeListItems().filter(
+              (item) => item.getId() !== 'homepage'
+            ),
+          ]),
+    }),
+    visionTool(),
+  ],
 
   schema: {
     types: schemaTypes,

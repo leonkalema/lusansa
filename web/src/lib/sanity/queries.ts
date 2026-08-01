@@ -48,6 +48,15 @@ export const servicesQuery = groq`*[_type == "service" && defined(slug.current)]
 	_id, name, slug, short, detail, included
 }`;
 
+export const homepageQuery = groq`*[_type == "homepage"][0]{
+	heroEyebrow, heroHeadline, heroDescription,
+	heroPrimaryCtaLabel, heroPrimaryCtaLink,
+	heroSecondaryCtaLabel, heroSecondaryCtaLink,
+	verificationEyebrow, verificationHeading, verificationIntro,
+	verificationSteps, invitationHeading, invitationText,
+	weaverEyebrow, weaverHeading, weaverParagraph1, weaverParagraph2, weaverTagline
+}`;
+
 export const guidesQuery = groq`*[_type == "guide" && defined(slug.current)] | order(publishedAt desc){
 	_id, title, slug, excerpt, mainImage, publishedAt
 }`;
@@ -115,7 +124,7 @@ export interface Guide {
 	title?: string;
 	slug: { current: string };
 	excerpt?: string;
-	mainImage?: unknown;
+	mainImage?: { asset?: unknown; alt?: string };
 	publishedAt?: string;
 	body?: PortableTextBlock[];
 }
@@ -127,4 +136,30 @@ export interface Service {
 	short: string;
 	detail: string[];
 	included: string[];
+}
+
+export interface VerificationStep {
+	title: string;
+	text: string;
+}
+
+export interface Homepage {
+	heroEyebrow: string;
+	heroHeadline: string;
+	heroDescription: string;
+	heroPrimaryCtaLabel: string;
+	heroPrimaryCtaLink: string;
+	heroSecondaryCtaLabel: string;
+	heroSecondaryCtaLink: string;
+	verificationEyebrow: string;
+	verificationHeading: string;
+	verificationIntro: string;
+	verificationSteps: VerificationStep[];
+	invitationHeading: string;
+	invitationText: string;
+	weaverEyebrow: string;
+	weaverHeading: string;
+	weaverParagraph1: string;
+	weaverParagraph2: string;
+	weaverTagline: string;
 }

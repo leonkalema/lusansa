@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { useQuery } from '@sanity/sveltekit';
-	import type { Plot, Project, Service } from '$lib/sanity/queries';
+	import type { Plot, Project, Service, Homepage } from '$lib/sanity/queries';
 	import type { PageProps } from './$types';
 	import SurveyPlan from '$lib/components/SurveyPlan.svelte';
 	import PlotCard from '$lib/components/PlotCard.svelte';
@@ -18,25 +18,34 @@
 	const projects = $derived($projectsQuery.data);
 	const servicesQuery = $derived(useQuery<Service[]>(data.services));
 	const services = $derived($servicesQuery.data ?? []);
+	const homeQuery = $derived(useQuery<Homepage>(data.homepage));
+	const home = $derived($homeQuery.data);
 
-	const steps = [
-		{
-			title: 'Tell us the plot',
-			text: 'Send us the plot you want on WhatsApp. It can be one of ours or land you found elsewhere.'
-		},
-		{
-			title: 'We walk the land',
-			text: 'Our team visits the site. We check the boundaries and photograph what is there.'
-		},
-		{
-			title: 'You get the evidence',
-			text: 'GPS coordinates, satellite view and a dated photo report, sent straight to your phone.'
-		},
-		{
-			title: 'You decide',
-			text: 'The report is yours. Buy with confidence or walk away. It does its job either way.'
-		}
-	];
+	const heroEyebrow = $derived(home?.heroEyebrow ?? `${site.areasServed.join(' · ')} · Uganda`);
+	const heroHeadline = $derived(home?.heroHeadline ?? 'Land, planned before it\u2019s sold.');
+	const heroDescription = $derived(home?.heroDescription ?? 'We survey and plan our plots before we sell them. Access roads, drainage and marked boundaries come first. Every plot is published with GPS coordinates. Check the location yourself, from Kampala or from abroad.');
+	const heroPrimaryCtaLabel = $derived(home?.heroPrimaryCtaLabel ?? 'See available plots');
+	const heroPrimaryCtaLink = $derived(home?.heroPrimaryCtaLink ?? '/plots');
+	const heroSecondaryCtaLabel = $derived(home?.heroSecondaryCtaLabel ?? 'How verification works');
+	const heroSecondaryCtaLink = $derived(home?.heroSecondaryCtaLink ?? '#verification');
+
+	const verificationEyebrow = $derived(home?.verificationEyebrow ?? 'Verification');
+	const verificationHeading = $derived(home?.verificationHeading ?? 'See the land before you pay for it.');
+	const verificationIntro = $derived(home?.verificationIntro ?? 'The biggest risk in buying land in Uganda is buying blind. We remove that risk, for our plots and for anyone else\u2019s.');
+	const steps = $derived(home?.verificationSteps ?? [
+		{ title: 'Tell us the plot', text: 'Send us the plot you want on WhatsApp. It can be one of ours or land you found elsewhere.' },
+		{ title: 'We walk the land', text: 'Our team visits the site. We check the boundaries and photograph what is there.' },
+		{ title: 'You get the evidence', text: 'GPS coordinates, satellite view and a dated photo report, sent straight to your phone.' },
+		{ title: 'You decide', text: 'The report is yours. Buy with confidence or walk away. It does its job either way.' }
+	]);
+	const invitationHeading = $derived(home?.invitationHeading ?? 'Ask us to walk any plot in Uganda.');
+	const invitationText = $derived(home?.invitationText ?? 'Buying from abroad? This service exists for you.');
+
+	const weaverEyebrow = $derived(home?.weaverEyebrow ?? 'The weaver bird');
+	const weaverHeading = $derived(home?.weaverHeading ?? 'Built to be inspected.');
+	const weaverParagraph1 = $derived(home?.weaverParagraph1 ?? 'Our logo is a weaver bird for a reason. The weaver builds its nest knot by knot. Then the nest is inspected, pulled at and tested before it is accepted. Weak work gets rejected, torn down and rebuilt.');
+	const weaverParagraph2 = $derived(home?.weaverParagraph2 ?? 'That is how we treat land. We plan it, mark it and document it to survive inspection. Yours, your family\u2019s, your surveyor\u2019s.');
+	const weaverTagline = $derived(home?.weaverTagline ?? site.tagline);
 
 </script>
 
@@ -54,18 +63,16 @@
 		class="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 lg:grid-cols-[1.08fr_0.92fr] lg:py-20"
 	>
 		<div use:reveal>
-			<p class="eyebrow mb-4">{site.areasServed.join(' · ')} · Uganda</p>
+			<p class="eyebrow mb-4">{heroEyebrow}</p>
 			<h1 class="text-4xl leading-[1.1] md:text-[3.4rem]">
-				Land, planned before it&rsquo;s sold.
+				{heroHeadline}
 			</h1>
 			<p class="mt-5 max-w-[46ch] text-lg leading-relaxed text-ink-soft">
-				We survey and plan our plots before we sell them. Access roads, drainage and marked
-				boundaries come first. Every plot is published with GPS coordinates. Check the location
-				yourself, from Kampala or from abroad.
+				{heroDescription}
 			</p>
 			<div class="mt-8 flex flex-wrap items-center gap-5">
-				<a href="/plots" class="btn-primary">See available plots <span class="arrow">&rarr;</span></a>
-				<a href="#verification" class="btn-quiet">How verification works <span class="arrow">&darr;</span></a>
+				<a href={heroPrimaryCtaLink} class="btn-primary">{heroPrimaryCtaLabel} <span class="arrow">&rarr;</span></a>
+				<a href={heroSecondaryCtaLink} class="btn-quiet">{heroSecondaryCtaLabel} <span class="arrow">&darr;</span></a>
 			</div>
 		</div>
 		<div class="overflow-hidden rounded border border-brown-700/20 lg:mt-8" use:reveal={{ delay: 120 }}>
@@ -108,13 +115,12 @@
 	<!-- 3 · Verification — staggered timeline, each step a concierge move -->
 	<section id="verification" class="texture-topo bg-paper-dark">
 		<div class="mx-auto max-w-6xl px-5 py-16 lg:py-24">
-			<p class="eyebrow mb-3">Verification</p>
+			<p class="eyebrow mb-3">{verificationEyebrow}</p>
 			<h2 class="max-w-[24ch] text-3xl md:text-[2.75rem] md:leading-[1.12]">
-				See the land before you pay for it.
+				{verificationHeading}
 			</h2>
 			<p class="mt-4 max-w-[52ch] text-ink-soft">
-				The biggest risk in buying land in Uganda is buying blind. We remove that risk, for our
-				plots and for anyone else&rsquo;s.
+				{verificationIntro}
 			</p>
 
 			<ol class="mt-12 md:grid md:grid-cols-2 md:gap-x-24" use:reveal>
@@ -151,10 +157,10 @@
 							An open invitation
 						</p>
 						<p class="mt-3 max-w-[24ch] font-display text-3xl text-paper md:text-4xl">
-							Ask us to walk any plot in Uganda.
+							{invitationHeading}
 						</p>
 						<p class="mt-3 max-w-[48ch] text-[15px] leading-relaxed text-paper/80">
-							Buying from abroad? This service exists for you.
+							{invitationText}
 						</p>
 					</div>
 					<WhatsAppCta
@@ -173,23 +179,16 @@
 			class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 lg:grid-cols-[1fr_320px] lg:py-28"
 		>
 			<div use:reveal>
-				<p class="eyebrow mb-4">The weaver bird</p>
-				<h2 class="text-4xl md:text-5xl">Built to be inspected.</h2>
+				<p class="eyebrow mb-4">{weaverEyebrow}</p>
+				<h2 class="text-4xl md:text-5xl">{weaverHeading}</h2>
 				<div class="mt-6 max-w-[58ch] space-y-4 leading-relaxed text-ink-soft">
-					<p>
-						Our logo is a weaver bird for a reason. The weaver builds its nest knot by knot. Then
-						the nest is inspected, pulled at and tested before it is accepted. Weak work gets
-						rejected, torn down and rebuilt.
-					</p>
-					<p>
-						That is how we treat land. We plan it, mark it and document it to survive inspection.
-						Yours, your family&rsquo;s, your surveyor&rsquo;s.
-					</p>
+					<p>{weaverParagraph1}</p>
+					<p>{weaverParagraph2}</p>
 				</div>
 				<p
 					class="mt-10 max-w-[20ch] font-display text-3xl leading-snug italic text-gold-600 md:text-[2.6rem]"
 				>
-					&ldquo;{site.tagline}&rdquo;
+					&ldquo;{weaverTagline}&rdquo;
 				</p>
 				<p class="mt-4 text-[13px] font-semibold tracking-[0.08em] text-brown-700 uppercase">
 					A Luganda proverb

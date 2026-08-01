@@ -16,3 +16,13 @@ export function ugxCompact(n?: number): string {
 export function coords(c?: { lat: number; lng: number }): string {
 	return c ? `${c.lat.toFixed(5)}, ${c.lng.toFixed(5)}` : '';
 }
+
+/** "24 July 2026" — for guide publish dates */
+export function longDate(iso?: string): string {
+	if (!iso) return '';
+	return new Date(iso).toLocaleDateString('en-UG', {
+		day: 'numeric',
+		month: 'long',
+		year: 'numeric'
+	});
+}

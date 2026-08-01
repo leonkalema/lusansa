@@ -35,6 +35,7 @@
 						<a href="/projects" class="btn-quiet text-[15px] sm:text-base">Projects</a>
 						<a href="/plots" class="btn-quiet hidden text-[15px] sm:inline-flex sm:text-base">Plots</a>
 						<a href="/services" class="btn-quiet text-[15px] sm:text-base">Services</a>
+						<a href="/guides" class="btn-quiet hidden text-[15px] sm:inline-flex sm:text-base">Guides</a>
 						<WhatsAppCta
 							message={generalMessage}
 							label="WhatsApp us"
