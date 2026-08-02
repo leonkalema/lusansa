@@ -23,7 +23,7 @@
 >
 	<h1
 		class="m-0 bg-gradient-to-b from-[#078c16] to-[#08720f]
-		       bg-clip-text font-['Aharoni','Black_Han_Sans','Arial_Black',sans-serif]
+		       bg-clip-text font-['Hedra','Black_Han_Sans','Arial_Black',sans-serif]
 		       text-[clamp(1.5rem,5vw,2.25rem)] font-black uppercase
 		       tracking-[-0.025em] text-transparent
 		       [text-shadow:0_0.075em_0_#075c0d]"
