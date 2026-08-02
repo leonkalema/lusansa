@@ -1,6 +1,5 @@
 <script lang="ts">
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
 	import { PreviewMode, QueryLoader, VisualEditing } from '@sanity/sveltekit';
 	import { client } from '$lib/sanity/client';
 	import { site } from '$lib/content/site';
@@ -16,7 +15,7 @@
 	const year = new Date().getFullYear();
 </script>
 
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
+<svelte:head><link rel="icon" href="/sawa.jpeg" /></svelte:head>
 
 <PreviewMode enabled={previewEnabled}>
 	<VisualEditing enabled={previewEnabled}>
