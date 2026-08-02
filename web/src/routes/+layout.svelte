@@ -7,7 +7,6 @@
 	import { generalMessage } from '$lib/whatsapp';
 	import WhatsAppCta from '$lib/components/WhatsAppCta.svelte';
 	import MobileNav from '$lib/components/MobileNav.svelte';
-	import BrandLogo from '$lib/components/BrandLogo.svelte';
 	import type { LayoutProps } from './$types';
 
 	const { children, data }: LayoutProps = $props();
@@ -25,7 +24,11 @@
 			<header class="sticky top-0 z-40 border-b border-brown-700/10 bg-paper/95 backdrop-blur-sm">
 				<div class="relative mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
 					<a href="/" class="flex items-center" aria-label="Lusansa home">
-						<BrandLogo />
+						<img
+							src="/59logo.jpeg"
+							alt="Lusansa Property Services"
+							class="h-14 w-auto sm:h-16"
+						/>
 					</a>
 					<nav class="hidden items-center gap-5 sm:flex">
 						<a href="/projects" class="btn-quiet text-base">Projects</a>
