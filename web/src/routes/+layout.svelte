@@ -25,7 +25,7 @@
 				<div class="relative mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
 					<a href="/" class="flex items-center" aria-label="Lusansa home">
 						<img
-							src="/59logo.jpeg"
+							src="/59logo-removebg-preview.png"
 							alt="Lusansa Property Services"
 							class="h-14 w-auto sm:h-16"
 						/>
